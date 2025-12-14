@@ -1,10 +1,10 @@
-**Overview**
+# Overview
 
 This project implements an end-to-end unsupervised anomaly detection pipeline for high-dimensional transaction data.
 It combines Isolation Forest, One-Class SVM, and PCA to identify anomalous patterns, analyze anomaly score distributions, and study the precision–recall tradeoff under different thresholds.
 The pipeline is fully reproducible and designed to resemble a real-world anomaly scoring workflow used in financial and risk-monitoring systems.
 
-**Key Objectives**
+## Key Objectives
 
 - Detect anomalous transactions without labeled training data
 - Compare multiple unsupervised anomaly detection models
@@ -12,7 +12,7 @@ The pipeline is fully reproducible and designed to resemble a real-world anomaly
 - Analyze threshold-based precision/recall tradeoffs
 - Save trained models and artifacts for reuse or deployment
 
-**Tech Stack**
+## Tech Stack
 - Python
 - numpy
 - pandas
@@ -22,7 +22,9 @@ The pipeline is fully reproducible and designed to resemble a real-world anomaly
 - joblib
 - Jupyter Notebook
 
-**Project Structure**
+## Project Structure
+
+```
 /data
   └── transactions.csv          # Synthetic transaction dataset
 /notebooks
@@ -33,15 +35,16 @@ The pipeline is fully reproducible and designed to resemble a real-world anomaly
 /outputs                         # Saved models, reports, and visuals
 README.md
 requirements.txt
+```
 
-**Dataset Description**
+## Dataset Description
 
 The dataset is synthetically generated to simulate financial transaction data with injected anomalies.
 - Each transaction contains multiple numerical features
 - Normal transactions follow correlated multivariate distributions
 - Anomalies are injected by adding large offsets to a small subset of samples
 
-**Features**
+## Features
 
 - feat_1 … feat_n: Numerical transaction features
 
@@ -49,7 +52,7 @@ The dataset is synthetically generated to simulate financial transaction data wi
   0 = normal transaction
   1 = injected anomaly (used only for evaluation)
 
-**Methodology**
+## Methodology
 ***1. Data Generation***
 Synthetic data is generated using multivariate normal distributions.
 To introduce realistic structure:
@@ -92,7 +95,7 @@ The pipeline automatically generates and saves:
   Histogram of Isolation Forest scores
   “outputs/anomaly_score_distribution.png”
 
-**How to Run**
+## How to Run
 ***1. Create Environment and Install Dependencies***
 python -m venv venv
 source venv/bin/activate
@@ -102,6 +105,7 @@ pip install -r requirements.txt
 The dataset is already included.
 To regenerate it with custom settings:
 
+```
 python src/generate_data.py \
   --n 10000 \
   --features 20 \
@@ -114,3 +118,4 @@ python src/train_and_score.py \
   --data_path data/transactions.csv \
   --out_dir outputs \
   --seed 42
+```
